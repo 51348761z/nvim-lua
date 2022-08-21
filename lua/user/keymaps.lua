@@ -37,6 +37,8 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<leader>bq", ":bdelete<CR>", opts)
+
 
 -- Insert --
 -- Press jk fast to enter
@@ -74,3 +76,39 @@ keymap("x", "<leader>wy", "<Plug>WslCopy", opts)
 keymap("n", "<leader>lm", ":Mason<CR>", opts)
 keymap("n", "<leader>li", ":LspInfo<CR>", opts)
 
+-- Telescope --
+keymap("n", "<leader>tf", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
+keymap("n", "<leader>tg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+keymap("n", "<leader>tb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
+keymap("n", "<leader>th", "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
+
+-- Packer --
+keymap("n", "<leader>ps", ":PackerSync<CR>", opts)
+keymap("n", "<leader>pt", ":PackerStatus<CR>", opts)
+keymap("n", "<leader>pc", ":PackerClean<CR>", opts)
+
+-- Nvim-tree --
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
+-- Tab control and window split -- 
+vim.cmd [[
+  noremap <silent>tn :tabnew<CR>
+  noremap <silent>tq :tabclose<CR>
+  noremap <silent>te :tabn<CR>
+  noremap <silent>tu :tabp<CR>
+  " noremap <silent><leader>t :tabnew<CR>
+  " noremap <silent><leader>g :tabclose<CR>
+  noremap <silent><leader>1 :tabn 1<CR>
+  noremap <silent><leader>2 :tabn 2<CR>
+  noremap <silent><leader>3 :tabn 3<CR>
+  noremap <silent><leader>4 :tabn 4<CR>
+  noremap <silent><leader>5 :tabn 5<CR>
+  noremap <silent><leader>6 :tabn 6<CR>
+  noremap <silent><leader>7 :tabn 7<CR>
+  " noremap <silent><s-tab> :tabnext<CR>
+  " noremap <silent><s-tab> <ESC>:tabnext<CR>
+    "slipt window
+  """"""""""""""""""""""""""""""""""
+  nnoremap <silent><leader>sh :split<CR>
+  nnoremap <silent><leader>sv :vsplit<CR>
+]]

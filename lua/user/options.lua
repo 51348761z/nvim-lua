@@ -47,6 +47,11 @@ vim.opt.fillchars.eob=" "
 -- vim.opt.whichwrap:append("<,>,[,],h,l")
 -- vim.opt.iskeyword:append("-")
 
+vim.cmd [[ 
+  filetype on 
+  filetype plugin on
+  filetype indent on
+]]
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work

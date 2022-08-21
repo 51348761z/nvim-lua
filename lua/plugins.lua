@@ -8,7 +8,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
     "clone",
     "--depth",
     "1",
-    "https://github.com/wbthomason/packer.nvim",
+    --[[ "https://github.com/wbthomason/packer.nvim", ]]
+    "git@github.com/wbthomason/packer.nvim",
     install_path,
   }
   print "Installing packer close and reopen Neovim..."
@@ -43,10 +44,13 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use 'folke/twilight.nvim' -- dims inactive portions of the code you're editing.
+  use "windwp/nvim-autopairs" -- A super powerful autopair plugin for Neovim that supports multiple characters.
+  use "numToStr/Comment.nvim" --  Smart and Powerful commenting plugin
 
   -- for WSL copy capability
   use "christianfosli/wsl-copy"
-  
+
   -- Colorshcemes
   use 'folke/tokyonight.nvim' -- A beautiful colorscheme
 
@@ -63,9 +67,40 @@ return require('packer').startup(function(use)
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
-  --LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
+  --LSP   **NOTE:It's important that you set up the plugins in the following order:
   use { "williamboman/mason.nvim" } -- LSP installer
+  use "williamboman/mason-lspconfig.nvim" -- mason-lspconfig bridges mason.nvim with the lspconfig plugin - making it easier to use the both plugins together.
+  use "neovim/nvim-lspconfig" -- enable LSP
+
+  -- Telescope
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use 'nvim-telescope/telescope-media-files.nvim'
+
+  -- Treesitter
+  use {
+    'nvim-treesitter/nvim-treesitter',  -- provide some basic functionality such as highlighting
+     run = ':TSUpdate'
+  }
+  use 'JoosepAlviste/nvim-ts-context-commentstring' -- work with treesitter
+
+  --[[ Gitsign ]]
+  use 'lewis6991/gitsigns.nvim'
+
+  --[[ Nvim-tree ]]
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+
+  --[[ Bufferline ]]
+  use 'akinsho/bufferline.nvim'
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
